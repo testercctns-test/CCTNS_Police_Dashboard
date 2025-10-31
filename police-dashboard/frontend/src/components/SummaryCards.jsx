@@ -1,21 +1,21 @@
 import React from 'react';
 
 export default function SummaryCards({ summary }) {
+  const cards = [
+    { title: 'Total Tickets', value: summary.totalTickets, color: 'bg-blue-600' },
+    { title: 'Closed', value: summary.totalClosed, color: 'bg-green-600' },
+    { title: 'Carry Forward - Closed', value: summary.totalCarryForwardClosed, color: 'bg-yellow-500' },
+    { title: 'Pending', value: summary.totalPending, color: 'bg-red-600' },
+  ];
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div className="bg-white p-4 rounded shadow">
-        <div className="text-sm text-gray-500">Total Completed</div>
-        <div className="text-2xl font-bold text-green-600">{summary.totalCompleted ?? 0}</div>
-      </div>
-      <div className="bg-white p-4 rounded shadow">
-        <div className="text-sm text-gray-500">Total Pending</div>
-        <div className="text-2xl font-bold text-red-600">{summary.totalPending ?? 0}</div>
-      </div>
-      <div className="bg-white p-4 rounded shadow">
-        <div className="text-sm text-gray-500">Total Tickets</div>
-        <div className="text-2xl font-bold text-blue-700">{summary.total ?? 0}</div>
-        <div className="text-xs text-gray-500 mt-1">Latest: {summary.latestMonth}</div>
-      </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {cards.map((c, i) => (
+        <div key={i} className={`${c.color} text-white rounded-2xl shadow-lg p-5 flex flex-col items-center`}>
+          <h3 className="text-lg font-semibold">{c.title}</h3>
+          <p className="text-3xl font-bold mt-2">{c.value}</p>
+        </div>
+      ))}
     </div>
   );
 }

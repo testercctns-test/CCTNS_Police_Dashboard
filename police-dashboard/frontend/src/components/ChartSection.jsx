@@ -1,31 +1,44 @@
-import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import React from "react";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line
+} from "recharts";
 
 export default function ChartSection({ data, loading }) {
-  // Recharts expects keys to match; normalize
-  const normalized = (data || []).map(d => ({ month: d.month, Completed: d.completed, Pending: d.pending }));
+  if (loading) return <p className="text-center text-gray-500">Loading chart data...</p>;
 
   return (
     <div>
-      <h3 className="text-lg font-medium mb-3">Completed vs Pending (Monthly)</h3>
+      <h2 className="text-lg font-semibold mb-4 text-gray-800">Monthly Tickets Overview</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="total" fill="#3b82f6" name="Total" />
+          <Bar dataKey="closed" fill="#10b981" name="Closed" />
+          <Bar dataKey="pending" fill="#ef4444" name="Pending" />
+        </BarChart>
+      </ResponsiveContainer>
 
-      {loading ? <div>Loading...</div> :
-        (normalized && normalized.length > 0) ? (
-          <div style={{ width: '100%', height: 360 }}>
-            <ResponsiveContainer>
-              <BarChart data={normalized}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="Completed" name="Completed" stackId="a" fill="#16a34a" />
-                <Bar dataKey="Pending" name="Pending" stackId="a" fill="#dc2626" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        ) : <div className="text-gray-500">No data available for selected range.</div>
-      }
+      <h2 className="text-lg font-semibold mt-8 mb-4 text-gray-800">Carry Forward Closed Trend</h2>
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="carryForwardClosed"
+            stroke="#8b5cf6"
+            strokeWidth={2}
+            name="Carry Forward Closed"
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -1,47 +1,10 @@
 [
-  {
-    "month": "February",
-    "completed": 45,
-    "pending": 10
-  },
-  {
-    "month": "March",
-    "completed": 60,
-    "pending": 15
-  },
-  {
-    "month": "April",
-    "completed": 75,
-    "pending": 12
-  },
-  {
-    "month": "May",
-    "completed": 80,
-    "pending": 20
-  },
-  {
-    "month": "June",
-    "completed": 90,
-    "pending": 25
-  },
-  {
-    "month": "July",
-    "completed": 110,
-    "pending": 30
-  },
-  {
-    "month": "August",
-    "completed": 120,
-    "pending": 40
-  },
-  {
-    "month": "September",
-    "completed": 140,
-    "pending": 45
-  },
-  {
-    "month": "October",
-    "completed": 150,
-    "pending": 48
-  }
+  { "month": "February", "total": 45, "closed": 45, "carryForwardClosed": 0, "pending": 0 },
+  { "month": "March", "total": 119, "closed": 101, "carryForwardClosed": 0, "pending": 18 },
+  { "month": "April", "total": 94, "closed": 86, "carryForwardClosed": 18, "pending": 8 },
+  { "month": "May", "total": 121, "closed": 120, "carryForwardClosed": 7, "pending": 2 },
+  { "month": "June", "total": 153, "closed": 153, "carryForwardClosed": 2, "pending": 0 },
+  { "month": "July", "total": 134, "closed": 133, "carryForwardClosed": 0, "pending": 1 },
+  { "month": "August", "total": 92, "closed": 92, "carryForwardClosed": 1, "pending": 0 },
+  { "month": "September", "total": 171, "closed": 170, "carryForwardClosed": 0, "pending": 1 }
 ]

@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
 
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const months = [ 'January','February','March','April','May','June','July','August','September','October','November','December' ];
 
 export default function FilterBar({ initial, onApply }) {
-  const [from, setFrom] = useState(initial.from || "February");
-  const [to, setTo] = useState(initial.to || "October");
-
-  const apply = () => {
-    onApply({ from, to });
-  };
+  const [from, setFrom] = useState(initial.from);
+  const [to, setTo] = useState(initial.to);
 
   return (
-    <div className="bg-white p-4 rounded shadow flex flex-col sm:flex-row gap-3 items-end">
+    <div className="bg-white p-4 rounded shadow-sm flex gap-3 items-center">
       <div>
-        <label className="text-xs text-gray-600">From</label>
-        <select value={from} onChange={e => setFrom(e.target.value)} className="block mt-1 p-2 border rounded">
+        <label className="text-sm text-gray-600 block">From</label>
+        <select value={from} onChange={(e) => setFrom(e.target.value)} className="border rounded px-2 py-1">
           {months.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
       </div>
 
       <div>
-        <label className="text-xs text-gray-600">To</label>
-        <select value={to} onChange={e => setTo(e.target.value)} className="block mt-1 p-2 border rounded">
+        <label className="text-sm text-gray-600 block">To</label>
+        <select value={to} onChange={(e) => setTo(e.target.value)} className="border rounded px-2 py-1">
           {months.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
       </div>
 
-      <div>
-        <button onClick={apply} className="bg-[var(--primary)] text-white px-4 py-2 rounded">Apply</button>
-      </div>
-
-      <div className="text-sm text-gray-500 ml-auto">
-        (Monthly-wise view)
-      </div>
+      <button
+        className="ml-4 px-4 py-2 bg-blue-700 text-white rounded"
+        onClick={() => onApply({ from, to })}
+      >
+        Apply
+      </button>
     </div>
   );
 }
